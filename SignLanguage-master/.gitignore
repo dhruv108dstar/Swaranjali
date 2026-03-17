@@ -1,0 +1,6 @@
+apiCreation
+node_modules
+.env
+frontend/_site
+frontend/node_modules
+backend/node_modules

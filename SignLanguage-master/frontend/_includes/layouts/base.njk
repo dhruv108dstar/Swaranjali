@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css" ></link>
+    <title>Swaranjali - Learn ISL practically.</title>
+    <link rel="icon" href="/assets/logo/kawaii-panda.png" />
+    <meta name="description" content="Swaranjali is a platform where users can practically learn American Sign Language using machine learning, games and access videos for over 20,000+ ASL phrases."/>
+    <link rel="canonical" href="https://Swaranjali.webdrip.in/"/>
+    <meta property="og:title" content="Swaranjali: Learn ISL practically"/>
+    <meta property="og:description" content="Swaranjali is a platform where users can practically learn American Sign Language using machine learning, games and access videos for over 20,000+ ASL phrases."/>
+    {# <meta property="og:image" content="/cryptocademy-logo-sideways-light.png"/> #}
+    {# <meta property="og:image:width" content="2727"/> #}
+    {# <meta property="og:image:height" content="1952"/> #}
+    <meta property="og:site_name" content="Swaranjali"/>
+    <meta property="og:type" content="ASL,Education,Courses,Learning,Machine Learning, ML, AI, Deaf Community,deaf, sign language"/>
+    <meta name="language" content="EN"/>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="author" content="Narottam Sahu, Avirat Sudam, Aman Shrivastava, Prathamesh Raut"/>
+    {# analytics - privacy and GDPR Compliant #}
+    <script async defer data-website-id="b315f6d5-10e5-4c26-a781-d3113658dae7" src="https://analytics.webdrip.in/umami.js"></script>
+</head>
+<body class="bg-[#ECF3F5]" >
+    {{content | safe}}
+
+    <!-- Swaranjali AI Chatbot Widget -->
+    <div id="sahara-chat-widget">
+      <button id="sahara-chat-toggle" aria-label="Open Chat">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+      </button>
+      <div id="sahara-chat-panel" class="sahara-hidden">
+        <div class="sahara-chat-header">
+          <div class="sahara-header-info">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#E8B6D2" stroke="#E8B6D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            <span>Swaranjali AI</span>
+          </div>
+          <button id="sahara-chat-close" aria-label="Close Chat">X</button>
+        </div>
+        <div id="sahara-chat-messages"></div>
+        <form id="sahara-chat-input-area">
+          <input type="text" id="sahara-chat-input" placeholder="Type your message..." autocomplete="off" />
+          <button type="submit" id="sahara-chat-send">Send</button>
+        </form>
+      </div>
+    </div>
+
+    <style>
+      #sahara-chat-widget {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        font-family: inherit;
+      }
+      #sahara-chat-toggle {
+        background-color: #E8B6D2;
+        color: #333;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+      #sahara-chat-toggle:hover {
+        transform: scale(1.05);
+      }
+      #sahara-chat-panel {
+        position: absolute;
+        bottom: 80px;
+        right: 0;
+        width: 450px;
+        height: 650px;
+        max-height: 80vh;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transition: opacity 0.3s, transform 0.3s;
+        transform-origin: bottom right;
+      }
+      #sahara-chat-panel.sahara-hidden {
+        opacity: 0;
+        transform: scale(0.8);
+        pointer-events: none;
+      }
+      .sahara-chat-header {
+        background: #E8B6D2;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #333;
+        font-weight: bold;
+      }
+      .sahara-header-info { display: flex; align-items: center; gap: 8px; }
+      #sahara-chat-close { background: none; border: none; cursor: pointer; font-size: 16px; font-weight: bold; color: #333; }
+      #sahara-chat-messages {
+        flex: 1;
+        padding: 15px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background: #ECF3F5;
+      }
+      .sahara-msg {
+        max-width: 80%;
+        padding: 10px 14px;
+        border-radius: 12px;
+        word-wrap: break-word;
+        font-size: 14px;
+      }
+      .sahara-msg.user { background: #A0A6FF; color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+      .sahara-msg.bot { background: white; color: #333; align-self: flex-start; border-bottom-left-radius: 2px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+      #sahara-chat-input-area {
+        display: flex;
+        padding: 10px;
+        background: white;
+        border-top: 1px solid #eee;
+        min-height: 60px;
+      }
+      #sahara-chat-input {
+        flex: 1;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        padding: 10px 15px;
+        font-size: 14px;
+        outline: none;
+      }
+      #sahara-chat-input:focus { border-color: #E8B6D2; }
+      #sahara-chat-send {
+        background: #E8B6D2;
+        color: #333;
+        border: none;
+        border-radius: 20px;
+        padding: 0 15px;
+        margin-left: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.2s;
+      }
+      #sahara-chat-send:hover { background: #d7a5c1; }
+      .sahara-loading { align-self: flex-start; background: transparent; padding: 5px; font-style: italic; color: #666; font-size: 12px; }
+    </style>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const toggleBtn = document.getElementById("sahara-chat-toggle");
+        const closeBtn = document.getElementById("sahara-chat-close");
+        const panel = document.getElementById("sahara-chat-panel");
+        const messagesContainer = document.getElementById("sahara-chat-messages");
+        const inputForm = document.getElementById("sahara-chat-input-area");
+        const inputField = document.getElementById("sahara-chat-input");
+        
+        let chatHistory = [];
+
+        const togglePanel = () => {
+          panel.classList.toggle("sahara-hidden");
+          if (!panel.classList.contains("sahara-hidden")) {
+            inputField.focus();
+          }
+        };
+
+        toggleBtn.addEventListener("click", togglePanel);
+        closeBtn.addEventListener("click", togglePanel);
+
+        const appendMessage = (text, sender) => {
+          const msgDiv = document.createElement("div");
+          msgDiv.classList.add("sahara-msg", sender);
+          msgDiv.textContent = text;
+          messagesContainer.appendChild(msgDiv);
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        };
+
+        inputForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const message = inputField.value.trim();
+          if (!message) return;
+
+          appendMessage(message, "user");
+          inputField.value = "";
+          
+          chatHistory.push({ role: "user", parts: [{ text: message }] });
+
+          const loadingDiv = document.createElement("div");
+          loadingDiv.classList.add("sahara-loading");
+          loadingDiv.textContent = "Swaranjali is typing...";
+          messagesContainer.appendChild(loadingDiv);
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+          try {
+            const response = await fetch("http://localhost:5000/api/chat", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ message, history: chatHistory })
+            });
+            const data = await response.json();
+            
+            loadingDiv.remove();
+            
+            if (data.response) {
+              appendMessage(data.response, "bot");
+              chatHistory.push({ role: "model", parts: [{ text: data.response }] });
+            } else {
+              appendMessage("Sorry, I encountered an error.", "bot");
+            }
+          } catch (error) {
+            loadingDiv.remove();
+            appendMessage("Unable to connect to Swaranjali AI backend.", "bot");
+            console.error("Chat Error:", error);
+          }
+        });
+        
+        // Initial greeting
+        appendMessage("Hi! I'm Swaranjali AI. How can I help you today?", "bot");
+      });
+    </script>
+</body>
+<script src="{{ "/js/flowbite.js" | url }}" defer></script>
+{# <script>
+  if (typeof navigator.serviceWorker !== 'undefined') {
+    navigator.serviceWorker.register('sw.js')
+  }
+</script> #}
+</html>

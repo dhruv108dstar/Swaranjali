@@ -1,0 +1,23 @@
+export const Leaderboard = [
+    {
+        name: "Varun Gupta",
+        location: "India",
+        score : 1550,
+        img: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
+        dt: "2022-02-10"
+    },
+    {
+        name: "Dhruv Chaurasiya",
+        location: "India",
+        score : 2310,
+        img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
+        dt: "2021-01-01"
+    },
+    {
+        name: "Harshit Gupta",
+        location: "India",
+        score : 350,
+        img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
+        dt: "2021-08-17"
+    },
+]
