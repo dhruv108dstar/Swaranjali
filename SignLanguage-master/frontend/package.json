@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npx @11ty/eleventy --serve --port=4000",
     "css": "npx tailwindcss -i ./style.css -o ./_site/css/styles.css --watch",
-    "build": "npx @11ty/eleventy"
+    "build": "npx tailwindcss -i ./style.css -o ./_site/css/styles.css && npx @11ty/eleventy"
   },
   "keywords": [],
   "author": "",
